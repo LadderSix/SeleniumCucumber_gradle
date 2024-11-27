@@ -11,7 +11,7 @@ public class PropertyReader {
         //Atributos
         Properties props = new Properties();
         // Definimos String con la ruta del fichero con las properties del proyecto
-        String rutaFile = "C:\\Users\\Matias Rojas\\IdeaProjects\\SeleniumCucumber_gradle\\src\\test\\java\\resources\\extent.properties";
+        String rutaFile = "C:\\Users\\Matias Rojas\\IdeaProjects\\SeleniumCucumber_gradle\\src\\test\\resources\\extent_properties.properties";
 
         //Intentamos instancia el fichero como un objeto de tipo file
         try {

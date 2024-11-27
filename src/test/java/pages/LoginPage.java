@@ -2,6 +2,8 @@ package pages;
 
 
 import driverConfig.DriverContext;
+import org.junit.Assert;
+import org.openqa.selenium.NoSuchElementException;
 import utils.MetodosGenericos;
 import utils.PropertyReader;
 import org.openqa.selenium.WebDriver;
@@ -33,49 +35,39 @@ public class LoginPage {
     @FindBy(xpath = "//input[@value=\"Login\"]")
     private WebElement btnLogin;
 
-    @FindBy(xpath = "//i[@class=\"fa fa-exclamation-circle\"]")
+    @FindBy(xpath = "//div[contains(@class, 'alert')] ")
     private WebElement msjError;
 
 
     public void ingresoCredencialesIncorrectas(String email, String password) {
-        MetodosGenericos.esperar(2);
         MetodosGenericos.accionSenkeys(imputEmail, email);
-        MetodosGenericos.esperar(2);
         MetodosGenericos.accionSenkeys(imputPassword, password);
-        System.out.println("Credenciales Ingresadas !");
+        System.out.println("Credenciales Incorrectas Ingresadas !");
 
     }
 
     public void ingresoCredencialesCorrectas() {
-        MetodosGenericos.accionSenkeys(imputEmail, PropertyReader.getProperty("email"));
         MetodosGenericos.esperar(2);
+        MetodosGenericos.accionSenkeys(imputEmail, PropertyReader.getProperty("email"));
         MetodosGenericos.accionSenkeys(imputPassword, PropertyReader.getProperty("pass"));
         System.out.println("Credenciales Validas Ingresadas !");
 
     }
 
     public void btnLogin(){
-        MetodosGenericos.esperar(2);
         MetodosGenericos.accionClick(btnLogin);
     }
 
     public void validaMsjError(){
-        try{
+        try {
             String msj = MetodosGenericos.accionGetText(msjError);
-            System.out.println(msj);
 
-            switch (msj){
-                case "" :
-                    assertEquals("",msj);
-                    break;
-                case " Warning" :
-                    assertEquals(" Warning.",msj);
-                    break;
-            }
+            assertEquals("Warning: No match for E-Mail Address and/or Password.",msj);
 
-        }catch (Exception e){
-            e.getMessage();
+        } catch (NoSuchElementException ex) {
+            ex.getMessage();
         }
+
     }
 
 }

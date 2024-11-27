@@ -5,5 +5,5 @@ public class Constant {
     public static final String SCREENSHOTS_PATH = "/test-output/screenshots";
 
     /* Datos Web - Vida Security Practicas */
-    public static final String  url = "";
+    public static final String  url = "https://opencart.abstracta.us/index.php?route=account/login";
 }
