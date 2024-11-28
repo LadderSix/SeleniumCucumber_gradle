@@ -21,21 +21,34 @@ public class ShoppingCartPage {
     @FindBy(xpath = "(//button[@title=\"Remove\"])[1]")
     private WebElement btnEliminarProducto;
 
-    @FindBy(xpath = "//span[contains(text(),'Checkout')]")
-    private WebElement btnCheckout;
+    @FindBy(xpath = "(//p//a//strong)[2]")
+    private WebElement btnCheckoutCart;
 
-    @FindBy(xpath = "")
-    private WebElement shoppingCart;
+    @FindBy(xpath = "//button[contains(@data-loading-text, 'Loading...')]")
+    private WebElement btnShoppingCart;
 
 
     public void eliminaItem(){
-        MetodosGenericos.esperar(2);
-        btnEliminarProducto.click();
+        MetodosGenericos.visualizarObjeto(btnEliminarProducto,10);
+        MetodosGenericos.accionClick(btnEliminarProducto);
         System.out.println("Item Eliminado!");
+
+
+    }
+    public void goToCart(){
+
+        MetodosGenericos.visualizarObjeto(btnShoppingCart,10);
+        MetodosGenericos.esperar(5);
+        MetodosGenericos.accionClick(btnShoppingCart);
+        System.out.println("Presionando Carrito!...");
+
+
     }
 
     public void irAlCheckout(){
-        MetodosGenericos.visualizarObjeto(btnCheckout, 20);
+        MetodosGenericos.visualizarObjeto(btnCheckoutCart, 10);
+        MetodosGenericos.esperar(5);
+        MetodosGenericos.accionClick(btnCheckoutCart);
 
     }
 }

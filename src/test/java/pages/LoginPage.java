@@ -47,7 +47,11 @@ public class LoginPage {
     }
 
     public void ingresoCredencialesCorrectas() {
-        MetodosGenericos.esperar(2);
+
+        boolean reponse = MetodosGenericos.visualizarObjeto(imputEmail,10);
+        //MetodosGenericos.esperar(2);
+
+
         MetodosGenericos.accionSenkeys(imputEmail, PropertyReader.getProperty("email"));
         MetodosGenericos.accionSenkeys(imputPassword, PropertyReader.getProperty("pass"));
         System.out.println("Credenciales Validas Ingresadas !");

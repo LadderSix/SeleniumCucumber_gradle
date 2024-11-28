@@ -26,7 +26,7 @@ public class MyAccountPage {
     @FindBy(xpath = "//i[@class='fa fa-home']")
     private WebElement homeButton;
 
-    @FindBy(xpath = "//div[@id='cart']")
+    @FindBy(xpath = "//div[@id='cart']//button")
     private WebElement btnShoppingCart;
 
     @FindBy(xpath = "//div[@class='image']//img[@title='MacBook']")

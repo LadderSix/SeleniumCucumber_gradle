@@ -12,5 +12,5 @@ Feature: Validaciones Inicio de Sesion
     Then Visualizamos mensaje de error por credenciales incorrectas
 
     Examples:
-      | email           | password |  |
-      | fake2@gmail.com | pass     |  |
+      | email      | password |  |
+      | qa@test.cl | test1234 |  |

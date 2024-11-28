@@ -60,9 +60,7 @@ public class MetodosGenericos {
             System.out.println("Valida si Es visible el elemento a validar.");
             WebDriverWait wait = new WebDriverWait(DriverContext.getDriver(), Duration.ofSeconds(timeout));
             wait.until(ExpectedConditions.visibilityOf(elementName));
-            System.out.println("Es visible el elemento a validar: " + elementName.getText());
-            System.out.println("==============================================");
-            System.out.println();
+            System.out.println("elemento visible: " + elementName.getText());
             return true;
         } catch (Exception var3) {
             System.out.println("No es visible el elemento a validar.");

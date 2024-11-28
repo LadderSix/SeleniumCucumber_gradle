@@ -10,6 +10,8 @@ public class ShoppingCartSteps {
     @And("Elimino producto del carrito")
     public void eliminoProductoDelCarrito(){
         shoppingCartPage.eliminaItem();
+        shoppingCartPage.goToCart();
         shoppingCartPage.irAlCheckout();
+
     }
 }

@@ -77,29 +77,26 @@ public class CheckOutPage {
 
         Select drpCountry = new Select(driver.findElement(By.name("country_id")));
         drpCountry.selectByVisibleText("Chile");
-
         Select drpZone = new Select(driver.findElement(By.name("zone_id")));
         drpZone.selectByVisibleText("Region Metropolitana");
 
         btnPaymentAdress.click();
 
-        MetodosGenericos.esperar(3);
-
+        MetodosGenericos.visualizarObjeto(btnShippingAdress,10);
         btnShippingAdress.click();
 
-        MetodosGenericos.esperar(3);
-
+        MetodosGenericos.visualizarObjeto(btnShippingMethod,10);
         btnShippingMethod.click();
 
-        textareaComment.sendKeys("Matias Rojas 15-11-2024");
+        textareaComment.sendKeys("Matias Rojas xx-xx-2024");
         checkboxAgree.click();
 
-        MetodosGenericos.esperar(3);
+        MetodosGenericos.visualizarObjeto(btnConfirmOrder,10);
         btnConfirmOrder.click();
 
-        MetodosGenericos.esperar(3);
+        MetodosGenericos.visualizarObjeto(btnContinue,10);
         btnContinue.click();
-
+        System.out.println("Orden Confirmada!");
     }
 
     public void irASeccionOrderHistory(){
