@@ -1,13 +1,13 @@
 package pages;
 
 import driverConfig.DriverContext;
+import org.openqa.selenium.*;
 import utils.MetodosGenericos;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class CheckOutPage {
 
@@ -28,10 +28,10 @@ public class CheckOutPage {
     @FindBy(xpath = "//input[@id='input-payment-company']")
     private WebElement inputCompany;
 
-    @FindBy(xpath = "//input[@id='input-payment-adress-1']")
+    @FindBy(xpath = "//input[@id='input-payment-address-1']")
     private WebElement inputAdress1;
 
-    @FindBy(xpath = "//input[@id='input-payment-adress-2']")
+    @FindBy(xpath = "//input[@id='input-payment-address-2']")
     private WebElement inputAdress2;
 
     @FindBy(xpath = "//input[@id='input-payment-city']")
@@ -46,14 +46,17 @@ public class CheckOutPage {
     @FindBy(xpath = "//input[@id='button-shipping-address']")
     private WebElement btnShippingAdress;
 
-    @FindBy(xpath = "textarea[name=\"comment\"]")
+    @FindBy(xpath = "//p//textarea[@name='comment']")
     private WebElement textareaComment;
 
-    @FindBy(xpath = "input[name=\"agree\"]")
+    @FindBy(xpath = "//div//input[@name=\"agree\"]")
     private WebElement checkboxAgree;
 
     @FindBy(xpath = "//input[@id='button-shipping-method']")
     private WebElement btnShippingMethod;
+
+    @FindBy(xpath = "//input[@id='button-payment-method']")
+    private WebElement btnPaymentMethod;
 
     @FindBy(xpath = "//input[@id='button-confirm']")
     private WebElement btnConfirmOrder;
@@ -64,10 +67,52 @@ public class CheckOutPage {
     @FindBy(xpath = "(//li//a[text()=\"Order History\"])[1]")
     private WebElement btnMenuOrderHistory;
 
+    @FindBy(xpath = "//select[@id='input-payment-country']")
+    private WebElement drpCountry;
+
+    @FindBy(xpath = "//select[@id='input-payment-zone']")
+    private WebElement drpZone;
+
+    private void selectCountry(String country) {
+        try {
+            Select select = new Select(drpCountry);
+            List<WebElement> optionListCountry = select.getOptions();
+
+            for (WebElement option : optionListCountry) {
+                if(option.getText().equals(country)) {
+                    option.click();
+                    break;
+                }
+            }
+        }catch (ElementNotInteractableException e){
+            e.getMessage();
+        }
+        MetodosGenericos.esperar(3);
+
+    }
+
+    private void selectZone(String zone) {
+        try {
+            Select select = new Select(drpZone);
+            List<WebElement> optionListCountry = select.getOptions();
+
+            for (WebElement option : optionListCountry) {
+                if(option.getText().equals(zone)) {
+                    option.click();
+                    break;
+                }
+            }
+        }catch (ElementNotInteractableException e){
+            e.getMessage();
+        }
+    }
+
 
     public void realizarCheckout() {
 
-        inputFirstname.sendKeys("Tester");
+        MetodosGenericos.visualizarObjeto(inputFirstname,10);
+        MetodosGenericos.accionSenkeys(inputFirstname, "Tester");
+
         inputLastName.sendKeys("Senior");
         inputCompany.sendKeys("Tecnova");
         inputAdress1.sendKeys("Direccion1");
@@ -75,11 +120,10 @@ public class CheckOutPage {
         inputCity.sendKeys("Santiago");
         inputPostCode.sendKeys("8150000");
 
-        Select drpCountry = new Select(driver.findElement(By.name("country_id")));
-        drpCountry.selectByVisibleText("Chile");
-        Select drpZone = new Select(driver.findElement(By.name("zone_id")));
-        drpZone.selectByVisibleText("Region Metropolitana");
+        selectCountry("Chile");
+        selectZone("Region Metropolitana");
 
+        MetodosGenericos.visualizarObjeto(btnPaymentAdress,10);
         btnPaymentAdress.click();
 
         MetodosGenericos.visualizarObjeto(btnShippingAdress,10);
@@ -88,14 +132,21 @@ public class CheckOutPage {
         MetodosGenericos.visualizarObjeto(btnShippingMethod,10);
         btnShippingMethod.click();
 
+        MetodosGenericos.visualizarObjeto(textareaComment,10);
         textareaComment.sendKeys("Matias Rojas xx-xx-2024");
+
+        MetodosGenericos.visualizarObjeto(checkboxAgree,10);
         checkboxAgree.click();
+
+        MetodosGenericos.visualizarObjeto(btnPaymentMethod,10);
+        btnPaymentMethod.click();
 
         MetodosGenericos.visualizarObjeto(btnConfirmOrder,10);
         btnConfirmOrder.click();
 
         MetodosGenericos.visualizarObjeto(btnContinue,10);
         btnContinue.click();
+
         System.out.println("Orden Confirmada!");
     }
 
