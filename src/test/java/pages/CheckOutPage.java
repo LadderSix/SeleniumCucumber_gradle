@@ -64,8 +64,14 @@ public class CheckOutPage {
     @FindBy(xpath = "//a[contains(text(),'Continue')]")
     private WebElement btnContinue;
 
+    @FindBy(xpath = "")
+    private WebElement nav;
+
+    @FindBy(xpath = "//span[contains(text(),'My Account')]")
+    private WebElement btnNavMenuMyAccount;
+
     @FindBy(xpath = "(//li//a[text()=\"Order History\"])[1]")
-    private WebElement btnMenuOrderHistory;
+    private WebElement btnNavMenuOrderHistory;
 
     @FindBy(xpath = "//select[@id='input-payment-country']")
     private WebElement drpCountry;
@@ -144,13 +150,18 @@ public class CheckOutPage {
         MetodosGenericos.visualizarObjeto(btnConfirmOrder,10);
         btnConfirmOrder.click();
 
+        System.out.println("Orden Confirmada!");
         MetodosGenericos.visualizarObjeto(btnContinue,10);
         btnContinue.click();
-
-        System.out.println("Orden Confirmada!");
     }
 
     public void irASeccionOrderHistory(){
-        btnMenuOrderHistory.click();
+        MetodosGenericos.visualizarObjeto(btnNavMenuMyAccount,10);
+        btnNavMenuMyAccount.click();
+        System.out.println("Click en el Nav...!");
+
+        MetodosGenericos.visualizarObjeto(btnNavMenuOrderHistory, 10);
+        btnNavMenuOrderHistory.click();
+        System.out.println("Click en Order History");
     }
 }

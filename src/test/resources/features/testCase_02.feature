@@ -14,5 +14,4 @@ Feature: Inicio Valido y compra de productos
     And Elimino producto del carrito
     And Realizo el Checkout
     And Ingreso a seccion Order History
-    And Visualizo detalle de la orden
-    Then Finalizo Existosamente la Compra
+    Then Visualizo detalle de la orden

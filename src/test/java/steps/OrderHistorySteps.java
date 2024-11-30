@@ -8,12 +8,10 @@ public class OrderHistorySteps {
 
     OrderHistoryPage orderHistoryPage = new OrderHistoryPage();
 
-    @And("Visualizo detalle de la orden")
+    @Then("Visualizo detalle de la orden")
     public void visualizoDetalleOrden(){
-
-    }
-    @Then("Finalizo Existosamente la Compra")
-    public void finalizoExitosamenteLaCompra(){
+        orderHistoryPage.visualizarInformacionDeOrden();
+        orderHistoryPage.capturaDePantalla();
 
     }
 }
