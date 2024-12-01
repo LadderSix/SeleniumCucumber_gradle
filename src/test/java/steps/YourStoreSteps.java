@@ -1,5 +1,7 @@
 package steps;
 
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.MyAccountPage;
 import io.cucumber.java.en.And;
 

@@ -1,10 +1,9 @@
 package utils;
 
 import driverConfig.DriverContext;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
@@ -14,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -24,6 +25,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MetodosGenericos {
+
+    public static void capturaDePantallaCompleta(){
+        try{
+            TakesScreenshot takesScreenshot = (TakesScreenshot) DriverContext.getDriver();
+            File src = takesScreenshot.getScreenshotAs(OutputType.FILE);
+            File tgt = new File(System.getProperty("user.dir") + "\\test-output\\screenshots\\screenshot.png");
+            System.out.println("Captura de pantalla generada");
+            FileUtils.copyFile(src, tgt);
+
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
 
     public static void mostrarElemento(WebElement element) {
         ((JavascriptExecutor) DriverContext.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);

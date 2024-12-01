@@ -27,22 +27,9 @@ public class OrderHistoryPage {
     private WebElement btnOrderInformation;
 
 
-    public void capturaDePantallaCompleta(){
-        try{
-            TakesScreenshot takesScreenshot = (TakesScreenshot) DriverContext.getDriver();
-            File src = takesScreenshot.getScreenshotAs(OutputType.FILE);
-            File tgt = new File(System.getProperty("user.dir") + "\\test-output\\screenshots\\OrderInformation.png");
-            System.out.println("Captura de pantalla generada");
-            FileUtils.copyFile(src, tgt);
-
-        } catch (IOException e) {
-            e.getMessage();
-        }
-    }
-
     public void visualizarInformacionDeOrden() {
         MetodosGenericos.visualizarObjeto(btnOrderInformation,10);
         btnOrderInformation.click();
-        capturaDePantallaCompleta();
+        MetodosGenericos.capturaDePantallaCompleta();
     }
 }
